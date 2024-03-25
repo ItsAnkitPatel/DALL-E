@@ -47,5 +47,5 @@ export const surpriseMePrompts = [
     'A Space Shuttle flying above Cape Town, digital art',
   ];
 
-  export const DallE_API_URL = 'http://localhost:8080/api/v1/dalle'
-  export const POST_API_URL = 'http://localhost:8080/api/v1/post'
+  export const DallE_API_URL = 'https://dall-e-s98j.onrender.com/api/v1/dalle'
+  export const POST_API_URL = 'https://dall-e-s98j.onrender.com/api/v1/post'
