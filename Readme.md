@@ -33,13 +33,13 @@
 
 Setup
 
-```
+```bash
 git clone https://github.com/ItsAnkitPatel/DALL-E.git
 ```
 
 Now install all packages inside client
 
-```js
+```bash
 cd DALL-E/
 
 npm i
@@ -47,7 +47,7 @@ npm i
 
 Then switch to backend and install packages.
 
-```
+```bash
 cd DALL_E/server/
 
 npm i
@@ -56,6 +56,10 @@ npm i
 Inside `DALL-E/constants/index.js`
 Update the `DallE_API_URL` & `POST_API_URL` to use it locally.
 
+E.g.
+```
+http://localhost:8080/api/v1/dalle
+```
 <br>
 <br>
 
@@ -74,3 +78,17 @@ CLOUDINARY_API_SECRET = "";
 Create account in Cloudinary and OpenAI to get the API keys and then add them in the environment variable.
 
 Either you can use local mongodb or Online(MongoDb Atlas) just provide the link and you are done.
+
+<br>
+<br>
+
+In terminal start backend first because fronted is fetching images from backend.
+
+```bash
+cd DALL-E/server/
+nodemon
+```
+```bash
+cd DALL-E/client/
+npm run dev
+```
