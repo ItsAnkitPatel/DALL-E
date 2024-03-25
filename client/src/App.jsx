@@ -10,14 +10,21 @@ const App = () => {
         <Link to="/">
           <img src={logo} alt="logo" className="w-28 object-contain" />
         </Link>
-
-        <Link
-          to="/create-post"
-          className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
-          title="Generate Images with AI"
-        >
-          Create
-        </Link>
+        <div className="flex justify-between items-center gap-4">
+          <Link
+            to="/create-post"
+            className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
+            title="Generate Images with AI"
+          >
+            Create
+          </Link>
+          <Link to="https://github.com/ItsAnkitPatel/DALL-E" target="_blank">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
+              className="h-9"
+            />
+          </Link>
+        </div>
       </header>
       <main className="sm:p-8 px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)]">
         <Routes>
