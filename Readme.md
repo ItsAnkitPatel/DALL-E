@@ -1,8 +1,10 @@
 # Dall-E Clone
+![Screenshot from 2024-03-25 07-38-48](https://github.com/ItsAnkitPatel/DALL-E/assets/163109788/96605c7d-b743-4cde-ab1c-a807125e9ea4)
+
 
 ## Overview
 
-Welcome to the DALL-E Clone project! This project is a recreation inspired by the groundbreaking DALL-E model developed by OpenAI, which generates images from textual descriptions. Our clone aims to replicate this functionality to a certain extent, allowing users to input prompts and generate corresponding images.
+Welcome to the DALL-E Clone project! This project is a recreation inspired by the groundbreaking DALL-E model developed by OpenAI, which generates images from textual descriptions. This clone aims to replicate this functionality to a certain extent, allowing users to input prompts and generate corresponding images.
 
 ## Features
 
