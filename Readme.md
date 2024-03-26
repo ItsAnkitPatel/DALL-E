@@ -1,5 +1,15 @@
 # Dall-E Clone
 
+## Overview
+
+Welcome to the DALL-E Clone project! This project is a recreation inspired by the groundbreaking DALL-E model developed by OpenAI, which generates images from textual descriptions. Our clone aims to replicate this functionality to a certain extent, allowing users to input prompts and generate corresponding images.
+
+## Features
+
+- **Text-to-Image Generation**: Input textual prompts and generate corresponding images.
+- **Easy Download**: You can can share the generated image with others and also can download it.
+- **User-Friendly Interface**: Simple user interface for ease of use.
+
 ### Fronted
 
  <p align="left">
@@ -30,8 +40,7 @@
 </a>
 </p>
 
-
-Setup
+## Project Setup
 
 ```bash
 git clone https://github.com/ItsAnkitPatel/DALL-E.git
@@ -57,9 +66,11 @@ Inside `DALL-E/constants/index.js`
 Update the `DallE_API_URL` & `POST_API_URL` to use it locally.
 
 E.g.
+
 ```
 http://localhost:8080/api/v1/dalle
 ```
+
 <br>
 <br>
 
@@ -88,6 +99,7 @@ In terminal start backend first because fronted is fetching images from backend.
 cd DALL-E/server/
 nodemon
 ```
+
 ```bash
 cd DALL-E/client/
 npm run dev
