@@ -1,7 +1,7 @@
 # Dall-E Clone
 
+[Project Video](https://github.com/ItsAnkitPatel/DALL-E/assets/163109788/34f44ab2-120e-4178-9d85-8e04cf0dcb85)
 
-https://github.com/ItsAnkitPatel/DALL-E/assets/163109788/34f44ab2-120e-4178-9d85-8e04cf0dcb85
 
 
 ## Overview
