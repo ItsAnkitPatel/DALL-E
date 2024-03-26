@@ -11,7 +11,8 @@ export function getRandomPrompt(prompt) {
 }
 
 export async function downloadImage(_id, photo) {
-  const imageBlob = await fetch(photo)
+  const securePhotoUrl = photo.replace('http://', 'https://');
+  const imageBlob = await fetch(securePhotoUrl)
     .then((response) => response.arrayBuffer())
     .then((buffer) => new Blob([buffer], { type: "image/jpg" }));
   const url = URL.createObjectURL(imageBlob)
