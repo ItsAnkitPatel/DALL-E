@@ -11,5 +11,9 @@ export function getRandomPrompt(prompt) {
 }
 
 export async function downloadImage(_id, photo) {
-  FileSaver.saveAs(photo, `download-${_id}.jpg`);
+  const imageBlob = await fetch(photo)
+    .then((response) => response.arrayBuffer())
+    .then((buffer) => new Blob([buffer], { type: "image/jpg" }));
+  const url = URL.createObjectURL(imageBlob)
+  FileSaver.saveAs(url, `download-${_id}.jpg`);
 }
