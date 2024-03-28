@@ -61,24 +61,20 @@ npm i
 Then switch to backend and install packages.
 
 ```bash
-cd DALL_E/server/
+cd DALL-E/server/
 
 npm i
 ```
-
-Inside `DALL-E/constants/index.js`
-Update the `DallE_API_URL` & `POST_API_URL` to use it locally.
-
-E.g.
-
+Inside `DALL-E/client/` create `.env` file and create a environment variable `VITE_BACKEND_API_URL` <br>
+This will be your backend URL, for local it can be
 ```
-http://localhost:8080/api/v1/dalle
+VITE_BACKEND_API_URL="http://localhost:8080"
 ```
 
 <br>
 <br>
 
-Now inside `DALL-E/server` create `.env` file and add these environment variables
+Now inside `DALL-E/server` create `.env` file and add these environment variables and their values
 
 ```js
 MONGODB_URL = "";
