@@ -53,7 +53,7 @@ git clone https://github.com/ItsAnkitPatel/DALL-E.git
 Now install all packages inside client
 
 ```bash
-cd DALL-E/
+cd DALL-E/client/
 
 npm i
 ```
