@@ -70,12 +70,13 @@ const CreatePost = () => {
             prompt: form.prompt,
           }),
         });
+        const data = await response.json();
         if (response.status !== 400) {
-          const data = await response.json();
           setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
           setShareBtn(true);
         } else {
-          alert("API limit reached");
+          const msg = data.error.message;
+          alert(`${response.statusText}: ${msg}`);
           // confirm("Do you want to enter your own API key ?");
         }
       } catch (err) {
