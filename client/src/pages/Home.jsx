@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader, Card, FormField } from "../components";
 import { POST_API_URL } from "../constants";
+import { toast, ToastContainer } from "react-toastify";
 
 // This is a functional component
 const RenderCards = ({ data, title }) => {
@@ -35,7 +36,9 @@ const Home = () => {
         setAllPosts(result.data.reverse());
       }
     } catch (error) {
-      alert(error);
+      toast.error(error.toString(),{
+        position:'top-center'
+      });
     } finally {
       setLoading(false);
     }
@@ -62,6 +65,7 @@ const Home = () => {
   };
   return (
     <section className="max-w-7xl mx-auto">
+      <ToastContainer />
       <div>
         <h1 className="font-extrabold text-[#222328] text-[32px]">
           The Community Showcase
@@ -78,7 +82,7 @@ const Home = () => {
           type="text"
           name="text"
           placeholder="Search posts"
-          value ={searchText}
+          value={searchText}
           handleChange={handleSearchChange}
         />
       </div>
@@ -99,7 +103,10 @@ const Home = () => {
 
             <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3 ">
               {searchText ? (
-                <RenderCards data={searchedResults} title="No search results found" />
+                <RenderCards
+                  data={searchedResults}
+                  title="No search results found"
+                />
               ) : (
                 <RenderCards data={allPosts} title="No posts found" />
               )}
