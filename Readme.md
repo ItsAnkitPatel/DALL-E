@@ -70,6 +70,7 @@ This will be your backend URL, for local it can be
 ```
 VITE_BACKEND_API_URL="http://localhost:8080"
 ```
+> If you running the server locally then change the port number according to your local server.
 
 <br>
 <br>
