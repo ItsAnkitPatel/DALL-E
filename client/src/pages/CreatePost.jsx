@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { preview } from "../assets";
 import { getRandomPrompt } from "../utils";
 import { FormField, Loader } from "../components";
-import { DallE_API_URL, POST_API_URL } from "../constants";
+import { POST_API_URL } from "../constants";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "../components/Modal";
 import { CreatePostContextProvider } from "../contexts/CreatePostContext";
 import useImageGenerator from "../hooks/useImageGeneration";
+import ShareWithCommunityLoader from "../components/ShareWithCommunityLoader";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const CreatePost = () => {
     return "lg:translate-x-0 max-sm:translate-y-0 opacity-100";
   };
 
-  // Linked with 'Modal' buttons
+  // Linked with Modal's 'Yes' button
   const resetPhoto = () => {
     setIsModalVisible((prev) => !prev);
 
@@ -95,9 +96,11 @@ const CreatePost = () => {
         toast.success("success", {
           autoClose: 2000,
         });
+
+        // Wait for 2 seconds before navigating so that user can see success message
         setTimeout(() => {
           navigate("/");
-        }, 2000); // Wait for 2 seconds before navigating so that user can see success message
+        }, 2000);
       } catch (err) {
         toast.error(err, " Failed to share post. Please try again later.");
       } finally {
@@ -152,6 +155,7 @@ const CreatePost = () => {
         animateTheInputField,
         removeAnimateFromInputField,
         animateInputField,
+        shareWithCommunityLoader,
       }}
     >
       <section className="max-w-7xl mx-auto overflow-hidden relative">
@@ -159,11 +163,7 @@ const CreatePost = () => {
         <ToastContainer autoClose={6000} position="top-center" />
 
         {/*Separate from main page.Used for showing loading screen when share with community button clicked */}
-        {shareWithCommunityLoader && (
-          <div className="w-[100%] h-[100%] absolute bg-[#f5f5f591] z-10 -translate-x-[50%] -translate-y-[50%] flex justify-center items-center pr-20 backdrop-blur-[1px]">
-            <Loader width="70px" height="70px" />
-          </div>
-        )}
+        <ShareWithCommunityLoader />
 
         {/*Separate from main page. This is Modal which will only show when the image is generated and user still want to change prompt */}
         <Modal />

@@ -11,6 +11,8 @@ const CreatePostContext = createContext({
   toggleModalVisibility: () => {},
   resetPhoto: () => {},
 
+  shareWithCommunityLoader: false,
+
   animateInputField: "animate-shake",
   animateTheInputField: () => {},
   removeAnimateFromInputField: () => {},
