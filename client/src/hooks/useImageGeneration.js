@@ -20,59 +20,34 @@ const useImageGenerator = (form, setForm) => {
       [fieldName]: { color, animation },
     }));
   }, []);
-  
+
   const generateImage = useCallback(async () => {
+    if (!form.prompt || !form.name) {
+      handleEmptyFields();
+      return;
+    }
     if (isImageGenerationDone) {
       setIsPhotoResetBtnEnabled(true);
-    } else if (form.prompt && form.name) {
-      setIsShareBtnDisabled(true);
+      return;
+    }
 
-      // The moment image generation starts disable prompt edit
-      setIsInputFieldDisabled(true);
-      setIsImageGenerationDone(false);
+    setIsShareBtnDisabled(true);
 
-      try {
-        setGeneratingImg(true);
-        const response = await fetch(DallE_API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt: form.prompt,
-          }),
-        });
-        const data = await response.json();
+    // The moment image generation starts disable prompt edit
+    setIsInputFieldDisabled(true);
+    setIsImageGenerationDone(false);
 
-        if (response.status !== 400) {
-          setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
-          setIsShareBtnDisabled(false);
-          setIsImageGenerationDone(true);
-        } else {
-          const msg = data.error.message;
-          toast.error(`${response.statusText}: ${msg}`);
-          // confirm("Do you want to enter your own API key ?");
-        }
-      } catch (err) {
-        toast.error(err.toString());
-      } finally {
-        setGeneratingImg(false);
-      }
-    } else {
-      // Make empty field red & apply shake animation
-      if (form.name === "") {
-        setFieldState("name", "border-red-500", "animate-shake");
-      }
-      if (form.prompt === "") {
-        setFieldState("prompt", "border-red-500", "animate-shake");
-      }
+    try {
+      setGeneratingImg(true);
+      const data = await callImageGenerationAPI();
 
-      //   Send notifications
-      if (form.name === "" && form.prompt === "") {
-        toast.error("Please provide name & prompt");
-      } else {
-        toast.error(`Please provide ${!form.name ? "name" : "proper prompt"}`);
-      }
+      setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+      setIsShareBtnDisabled(false);
+      setIsImageGenerationDone(true);
+    } catch (err) {
+      toast.error(err.toString());
+    } finally {
+      setGeneratingImg(false);
     }
   }, [
     form,
@@ -88,6 +63,41 @@ const useImageGenerator = (form, setForm) => {
     setFieldState,
   ]);
 
+  const handleEmptyFields = useCallback(() => {
+    // Make empty field red & apply shake animation
+    if (form.name === "") {
+      setFieldState("name", "border-red-500", "animate-shake");
+    }
+    if (form.prompt === "") {
+      setFieldState("prompt", "border-red-500", "animate-shake");
+    }
+
+    //   Send notifications
+    if (form.name === "" && form.prompt === "") {
+      toast.error("Please provide name & prompt");
+    } else {
+      toast.error(`Please provide ${!form.name ? "name" : "proper prompt"}`);
+    }
+  }, [form, setFieldState]);
+
+  const callImageGenerationAPI = useCallback(async () => {
+    const response = await fetch(DallE_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: form.prompt,
+      }),
+    });
+    
+    const data = await response.json();
+    if (response.status === 400) {
+      throw new Error(`${response.statusText}: ${data.error.message}`);
+    }
+
+    return data;
+  }, [form]);
   return {
     form,
     setForm,
